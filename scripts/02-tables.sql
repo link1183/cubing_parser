@@ -1,4 +1,3 @@
-CREATE DATABASE IF NOT EXISTS solves;
 USE solves;
 
 CREATE TABLE IF NOT EXISTS `event` (
@@ -9,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `event` (
 
 CREATE TABLE IF NOT EXISTS `solve` (
     `id` int AUTO_INCREMENT NOT NULL UNIQUE,
-    `event_name` int NOT NULL,
+    `event_name` varchar(10) NOT NULL,
     `time` int NOT NULL,
     `scramble` varchar(250) NOT NULL,
     `date` datetime NOT NULL,
@@ -19,21 +18,4 @@ CREATE TABLE IF NOT EXISTS `solve` (
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO event (event_name) VALUES 
-('222'),
-('333'),
-('444'),
-('555'),
-('666'),
-('777'),
-('sq1'),
-('skewb'),
-('clock'),
-('pyra'),
-('mega'),
-('3bld'),
-('fc'),
-('4bld'),
-('5bld'),
-('multi'),
-('oh');
+ALTER TABLE `solve` ADD CONSTRAINT `solve_fk1` FOREIGN KEY (`event_name`) REFERENCES `event`(`event_name`);

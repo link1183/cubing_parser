@@ -1,18 +1,10 @@
 use mysql::prelude::*;
 use mysql::*;
+use std::env;
 
-pub fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    let url = "mysql://root:example@localhost:3306/solves";
-    let pool = Pool::new(url)?;
+pub fn get_conn() -> Result<PooledConn, Box<dyn std::error::Error>> {
+    let url = env::var("URL").unwrap();
+    let pool = Pool::new(url.as_str())?;
 
-    let mut conn = pool.get_conn()?;
-
-    conn.query_drop(
-        r"
-        INSERT INTO `event` (`event_name`)
-        VALUES ('333'), ('222')
-    ",
-    )?;
-
-    Ok(())
+    Ok(pool.get_conn()?)
 }

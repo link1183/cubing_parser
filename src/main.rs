@@ -1,15 +1,17 @@
-// use twistytimer::ParseConfig;
-
 mod models;
 mod mysql;
 mod twistytimer;
+use dotenv::dotenv;
+use mysql::get_conn;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // let config = ParseConfig::default();
+    dotenv().ok();
 
-    // let set = twistytimer::parse_twistytimer("twistytimer.csv", Some(config)).unwrap();
+    let set = twistytimer::parse_twistytimer("twistytimer.csv").unwrap();
 
-    // println!("{:?}", set);
+    println!("{:?}", set);
 
-    mysql::main()
+    let conn = get_conn()?;
+
+    Ok(())
 }
