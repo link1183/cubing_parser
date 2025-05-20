@@ -1,0 +1,10 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: adm
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
