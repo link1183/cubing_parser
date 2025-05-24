@@ -13,7 +13,7 @@ INSERT INTO event (event_name) VALUES
 ('pyra'),
 ('mega'),
 ('3bld'),
-('fc'),
+('fmc'),
 ('4bld'),
 ('5bld'),
 ('multi'),

@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS `solve` (
     `session_name` varchar(100) NOT NULL,
     `penalty` int NOT NULL DEFAULT '0',
     `comment` text,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    CONSTRAINT `unique_solve_constraint` UNIQUE KEY (`event_name`, `time`, `scramble`(190))
 );
 
 ALTER TABLE `solve` ADD CONSTRAINT `solve_fk1` FOREIGN KEY (`event_name`) REFERENCES `event`(`event_name`);

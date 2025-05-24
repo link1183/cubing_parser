@@ -72,7 +72,7 @@ impl FromStr for TwistyTimerPuzzles {
             "pyra" => Ok(Self::CubePyra),
             "mega" => Ok(Self::CubeMega),
             "3bld" => Ok(Self::Event3bld),
-            "fc" => Ok(Self::EventFMC),
+            "fmc" => Ok(Self::EventFMC),
             "4bld" => Ok(Self::Event4bld),
             "5bld" => Ok(Self::Event5bld),
             "multi" => Ok(Self::EventMultiBld),

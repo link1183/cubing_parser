@@ -2,16 +2,21 @@ mod models;
 mod mysql;
 mod twistytimer;
 use dotenv::dotenv;
-use mysql::get_conn;
+use std::env;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
 
-    let set = twistytimer::parse_twistytimer("twistytimer.csv").unwrap();
+    let args: Vec<String> = env::args().collect();
+    let file_path = if args.len() > 1 {
+        &args[1]
+    } else {
+        "data/twistytimer.csv"
+    };
 
-    println!("{:?}", set);
+    mysql::import_twistytimer_csv(file_path)?;
 
-    let conn = get_conn()?;
+    println!("Successfully imported TwistyTimer data to database");
 
     Ok(())
 }
